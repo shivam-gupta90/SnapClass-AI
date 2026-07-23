@@ -37,10 +37,16 @@ def style_background_dashboard():
 import streamlit as st
 
 def style_base_layout():
+    
     st.markdown("""
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+            /* Input box */
+            
+
+            
+
            /* Hide Top Bar of Streamlit */
                 
             #MainMenu, header, footer {
@@ -56,6 +62,7 @@ def style_base_layout():
                 font-size:3.5rem !important;
                 line-height:1.1 !important;
                 margin-bottom:0rem !important;
+                
             }
                 
             h2 {
@@ -63,6 +70,7 @@ def style_base_layout():
                 font-size:2rem !important;
                 line-height:1.1 !important;
                 margin-bottom:0rem !important;
+                color: black !important;
             }
             h3, h4,p {
                 font-family: 'Outfit',sans-serif

@@ -16,3 +16,6 @@ segno # for qr code generation
 pillow   # for image preprocessing
 
 streamlit
+
+librosa    # file load ,edit ,remove noise,create embeddings
+resemblyzer # it use to make  the embeddings of voice so futher we can compare with voice
