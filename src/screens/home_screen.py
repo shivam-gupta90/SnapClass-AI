@@ -16,7 +16,7 @@ def home_screen():
         st.header("I'm student")
         st.image("https://i.ibb.co/844D9Lrt/mascot-student.png",width=120)
         if st.button('student portal',type='primary', icon=':material/arrow_outward:',icon_position='right'):
-            st.session_state['login type'] = 'student'
+            st.session_state['login_type'] = 'student'
             st.rerun()
         
     with col2:
@@ -24,7 +24,7 @@ def home_screen():
         st.image("https://i.ibb.co/CsmQQV6X/mascot-prof.png",width=145)
 
         if st.button('teacher portal' , type='primary', icon=':material/arrow_outward:',icon_position='right'):
-            st.session_state['login type'] = 'teacher'
+            st.session_state['login_type'] = 'teacher'
             st.rerun()
         
 
