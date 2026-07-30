@@ -22,7 +22,7 @@ def main():
         case None:
             home_screen()
             
-    join_code = st.query_params.get('join-code')
+    join_code = st.query_params.get('join_code')
     if join_code:
         if st.session_state.login_type != 'student':
             st.session_state.login_type = 'student'
