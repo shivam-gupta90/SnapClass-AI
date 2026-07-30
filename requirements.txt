@@ -18,5 +18,5 @@ pillow   # for image preprocessing
 
 
 
-librosa    # file load ,edit ,remove noise,create embeddings
+librosa>=0.10.0,<0.12.0   # file load ,edit ,remove noise,create embeddings
 resemblyzer # it use to make  the embeddings of voice so futher we can compare with voice
