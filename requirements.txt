@@ -1,22 +1,22 @@
 streamlit
-
+# utilitites
 numpy
 pandas
+
+# face reconization
 scikit-learn
-
 dlib-bin
+
 git+https://github.com/ageitgey/face_recognition
+setuptools<70.0.0
 
-setuptools>=70.1.0
+supabase   # fo free database
+bcrypt # for password protection 
 
-supabase
-bcrypt
-segno
-pillow
+segno # for qr code generation
+pillow   # for image preprocessing
 
-librosa==0.11.0
 
-torch==2.8.0
-torchaudio==2.8.0
 
-resemblyzer
+librosa    # file load ,edit ,remove noise,create embeddings
+resemblyzer # it use to make  the embeddings of voice so futher we can compare with voice
