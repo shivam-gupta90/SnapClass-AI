@@ -1,22 +1,26 @@
+# Streamlit
 streamlit
-# utilitites
+
+# Utilities
 numpy
 pandas
 
-# face reconization
+# Face recognition
 scikit-learn
 dlib-bin
-
 git+https://github.com/ageitgey/face_recognition
+
+# Build tools
 setuptools<70.0.0
 
-supabase   # fo free database
-bcrypt # for password protection 
+# Database & auth
+supabase
+bcrypt
 
-segno # for qr code generation
-pillow   # for image preprocessing
+# QR code & images
+segno
+pillow
 
-
-
-librosa>=0.10.0,<0.12.0   # file load ,edit ,remove noise,create embeddings
-resemblyzer # it use to make  the embeddings of voice so futher we can compare with voice
+# Audio / embeddings
+librosa
+resemblyzer
