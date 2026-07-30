@@ -4,11 +4,11 @@ streamlit
 # Utilities
 numpy
 pandas
-
-# Face recognition
 scikit-learn
+
+# Face recognition (use binary dlib, then face_recognition from GitHub)
 dlib-bin
-git+https://github.com/ageitgey/face_recognition
+face_recognition @ git+https://github.com/ageitgey/face_recognition
 
 # Build tools
 setuptools<70.0.0
@@ -21,6 +21,6 @@ bcrypt
 segno
 pillow
 
-# Audio / embeddings
+# Audio / embeddings (unpinned so it can choose Python-3.14-compatible numba/llvmlite)
 librosa
 resemblyzer
