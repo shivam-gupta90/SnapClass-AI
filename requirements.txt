@@ -7,8 +7,8 @@ pandas
 scikit-learn
 
 # Face recognition (use binary dlib, then face_recognition from GitHub)
-dlib
-face_recognition @ git+https://github.com/ageitgey/face_recognition
+dlib-bin
+git+https://github.com/ageitgey/face_recognition_models
 
 # Build tools
 setuptools<70.0.0
