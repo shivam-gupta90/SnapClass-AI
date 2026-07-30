@@ -1,6 +1,6 @@
 from src.database.config import supabase
 import bcrypt
-
+import streamlit as st
 def hash_pass(pwd):
     return bcrypt.hashpw(pwd.encode(),bcrypt.gensalt()).decode()
 
@@ -31,8 +31,8 @@ def get_all_students():
     response = supabase.table('students').select("*").execute()
     return response.data
 
-def create_student(new_name,voice_embedding,face_embedding):
-    data = {'name':new_name, 'voice_embedding':voice_embedding,'face_embedding':face_embedding}
+def create_student(new_name, face_embedding=None, voice_embedding=None):
+    data = {'name' : new_name,'face_embedding' : face_embedding, 'voice_embedding' : voice_embedding}
     response = supabase.table('students').insert(data).execute()
     return response.data
 
@@ -73,4 +73,8 @@ def get_student_subjects(student_id):
 
 def get_student_attendance(student_id):
     response = supabase.table("attendance_logs").select("*, subjects(*)").eq("student_id", student_id).execute()
+    return response.data
+
+def create_attendance(logs):
+    response = supabase.table('attendance_logs').insert(logs).execute()
     return response.data

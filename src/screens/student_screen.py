@@ -125,7 +125,7 @@ def student_screen():
 
             if num_faces ==0:
                 st.warning('Face not Found!')
-            elif num_faces>2:
+            elif num_faces>1:
                 st.warning('Multiple Faces Found')
             else:
                 if detected:
@@ -155,8 +155,9 @@ def student_screen():
 
             try:
                 audio_data = st.audio_input('Record a short phrase like I am present, My name is kapil')
-            except Exception:
-                st.error('Audio Data Failed')
+            except Exception as e:
+                st.exception(e)
+                return None
 
             if st.button('Create Account',type='primary'):
                 if new_name:
@@ -166,12 +167,17 @@ def student_screen():
                         if encoding:
                             face_emb = encoding[0].tolist()
 
+
                             voice_emb = None
                             if audio_data:
-                                voice_emb = get_voice_embedding(audio_data.read())
-                            
-                            response_data = create_student(new_name,face_embedding = face_emb,voice_embedding= voice_emb)
+                                audio_bytes = audio_data.getvalue()
 
+                                st.write("Audio bytes length:", len(audio_bytes))
+
+                                voice_emb = get_voice_embedding(audio_bytes)
+                                
+
+                            response_data = create_student(new_name, face_embedding=face_emb,voice_embedding=voice_emb)
                             if response_data:
                                 train_classifier()
                                 st.session_state.is_logged_in = True
