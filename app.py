@@ -9,27 +9,36 @@ def main():
         page_title="SnapClass - Making Attendance faster using AI",
         page_icon="https://i.ibb.co/YTYGn5qV/logo.png"
     )
-    if 'login_type' not in st.session_state:
-        st.session_state['login_type'] = None
 
-    match st.session_state['login_type']:
-        case 'teacher':
+    if "login_type" not in st.session_state:
+        st.session_state["login_type"] = None
+
+    # Read join code
+    join_code = st.query_params.get("join_code")
+
+    # If opened using invite link, go directly to student login
+    if join_code and st.session_state["login_type"] is None:
+        st.session_state["login_type"] = "student"
+        st.rerun()
+
+    # If student is already logged in and join code exists,
+    # open dialog BEFORE rendering dashboard
+    if (
+        join_code
+        and st.session_state.get("is_logged_in")
+        and st.session_state.get("user_role") == "student"
+    ):
+        auto_enroll_dialog(join_code)
+
+    match st.session_state["login_type"]:
+        case "teacher":
             teacher_screen()
-        
-        case 'student':
+
+        case "student":
             student_screen()
 
-        case None:
+        case _:
             home_screen()
-            
-    join_code = st.query_params.get('join_code')
-    if join_code:
-        if st.session_state.login_type != 'student':
-            st.session_state.login_type = 'student'
-            st.rerun()
-        if st.session_state.get('is_logged_in') and st.session_state.get('user_role')=='student':
-            auto_enroll_dialog(join_code)
 
-
-
-main()
+if __name__ == "__main__":
+    main()
