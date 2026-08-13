@@ -94,3 +94,4 @@ def predict_attendance(class_image_np):
             detected_student[predict_id] = True
 
     return detected_student,all_students,len(encodings)
+

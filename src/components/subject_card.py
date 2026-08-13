@@ -3,7 +3,7 @@ import streamlit as st
 def subject_card(name,code,section,stats = None,footer_callback = None):
     html = f"""
         <div style="background:white;border-left: 8px solid #EB459E; padding:25px; border-radius:20px; border:1px solid black;margin-bototm:20px;">
-        <h3 style="margin:0; color:#1e293; font-size:1.5rem">{name}</h3>
+        <h3 style="margin:0; color:#000000; font-size:1.5rem">{name}</h3>
         <p style="color:#64748b; margin:10px 0;">Code : <span style="backgorund:#E0E3FF; | color:#5865F2; padding:2px 8px; border-radius:5px;">{code} </span> | section : {section}</p>
         """
     
@@ -12,10 +12,12 @@ def subject_card(name,code,section,stats = None,footer_callback = None):
         <div style = "display:flex; gap:8px; flex_wrap:wrap;">  
         """
         for icon,label,value in stats:
-            html+= f'<div style="backgorund: #EB459E10; padding:5px 2px; border-radius:12px; font-size:0.9rem">{icon} <b>{value}</b> {label}'
+            html+= f'<div style="backgorund: #EB459E10; padding:5px 2px; border-radius:12px; font-size:0.9rem; color:#000000;">{icon} <b style="color:#000000;">{value}</b> <span style="color:#000000;">{label}</span>'
 
             html+="</div>"
-
+        html+="</div>"
+        
+    html = "\n".join(line.strip() for line in html.splitlines())
     st.markdown(html,unsafe_allow_html=True)
 
     if footer_callback:

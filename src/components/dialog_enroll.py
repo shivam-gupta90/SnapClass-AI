@@ -20,7 +20,7 @@ def enroll_dialog():
                 if check.data:
                     st.warning("Your are already Enrolled in this program")
                 else:
-                    enroll_student_to_subject(student_id,subject['subject_id'])
+                    enroll_student_to_subject(subject['subject_id'], student_id)
                     st.success('Succesfully Enrolled!')
                     time.sleep(1)
                     st.rerun()

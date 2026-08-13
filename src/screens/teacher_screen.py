@@ -2,7 +2,7 @@ import streamlit as st
 from src.ui.base_layout import style_background_dashboard,style_base_layout
 from src.components.header import header_dashboard
 from src.components.footer import footer_dashboard
-from src.database.db import check_teacher_exists,create_teacher,teacher_login,get_teacher_subjects,get_attendance_for_teacher
+from src.database.db import check_teacher_exists,create_teacher,teacher_login,get_teacher_subjects,get_attendance_for_teacher,delete_subject
 from src.components.dialog_create_subject import create_subject_dialog
 from src.components.subject_card import subject_card
 from src.components.dialog_share_subject import  share_subject_dialog
@@ -193,18 +193,35 @@ def teacher_tab_manage_subjects():
                 ("🕰️", "Classes", sub['total_classes'])
 
             ]
-        def share_btn():
-            if st.button(f"Share Code: {sub['name']}", key= f"Share_{sub['subject_code']}", icon=":material/share:"):
-                share_subject_dialog(sub['name'], sub['subject_code'])
-                st.space()
+            def share_btn():
+                col1, col2 = st.columns(2)
 
-        subject_card(
-                name = sub['name'],
-                code = sub['subject_code'],
-                section = sub['section'],
-                stats = stats,
-                footer_callback = share_btn
-            )
+                with col1:
+                    if st.button(
+                        f"Share Code: {sub['name']}",
+                        key=f"Share_{sub['subject_id']}",
+                        icon=":material/share:"
+                    ):
+                        share_subject_dialog(sub['name'], sub['subject_code'])
+
+                with col2:
+                    if st.button(
+                        "Delete Subject",
+                        key=f"Delete_{sub['subject_id']}",
+                        icon=":material/delete:",
+                        type="secondary"
+                    ):
+                        delete_subject(sub['subject_id'])
+                        st.success("Subject deleted successfully!")
+                        st.rerun()
+
+            subject_card(
+                    name = sub['name'],
+                    code = sub['subject_code'],
+                    section = sub['section'],
+                    stats = stats,
+                    footer_callback = share_btn
+                )
     else:
         st.warning("No Subject Found. Create One Above")
 
