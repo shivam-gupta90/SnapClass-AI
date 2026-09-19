@@ -125,7 +125,8 @@ def student_screen():
 
     photo_source = st.camera_input("Position your Face in the Center")
     if photo_source:
-        img = np.array(Image.open(photo_source))
+        # Convert image to RGB format to ensure compatibility with face detection models
+        img = np.array(Image.open(photo_source).convert('RGB'))
 
         with st.spinner("AI is Scanning..."):
             detected, all_ids, num_faces=predict_attendance(img)
@@ -169,7 +170,7 @@ def student_screen():
             if st.button('Create Account',type='primary'):
                 if new_name:
                     with st.spinner('Creating Profile...'):
-                        img = np.array(Image.open(photo_source))
+                        img = np.array(Image.open(photo_source).convert('RGB'))
                         encoding = get_face_embeddings(img)
                         if encoding:
                             face_emb = encoding[0].tolist()
